@@ -16,15 +16,7 @@ import { TravelAppShell } from '../shared/travel/TravelAppShell'
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Sarlavha va tavsif */}
-      <div className="mx-auto max-w-4xl px-4 pt-8">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
-          Travel App — Device Preview
-        </h1>
-        <p className="mt-1 text-sm text-slate-600">
-          Quyida iPhone ichidagi UI: Search, Home, Orders, Benefits, Profile va ichki overlay natijalari.
-        </p>
-      </div>
+  
 
       {/* iPhone preview: markazda joylashgan */}
       <div className="mx-auto mt-6 flex max-w-4xl items-start justify-center px-4 pb-12">
