@@ -1,0 +1,92 @@
+/**
+ * animations.css
+ * Custom, lightweight page transition animations va skeleton shimmer.
+ * Qo'shimcha: global scrollbar yashirish (skroll saqlanadi).
+ */
+
+/* Fade + slight up slide on mount */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+/* Apply to page wrappers */
+.page-enter {
+  animation: fadeUp 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Smooth horizontal slide for the moving notch bubble */
+.moving-bubble {
+  will-change: left, transform;
+  transition:
+    left 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 200ms ease;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* Minimal skeleton base style with shimmering light band */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(241 245 249); /* slate-100 */
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: -50%;
+  width: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.2s infinite;
+}
+
+/* Hide scrollbars but keep scrolling (utility) */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* GLOBAL: hide ALL scrollbars but keep scroll working */
+:where(html, body, #root, *) {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+:where(*)::-webkit-scrollbar {
+  display: none;  /* Chrome/Safari/WebKit */
+  width: 0;
+  height: 0;
+}
+:where(*)::-webkit-scrollbar-thumb,
+:where(*)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Optional: smoother nested scrolling without overscroll chaining */
+:where(*){
+  overscroll-behavior: contain;
+}
